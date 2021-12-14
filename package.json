@@ -1,0 +1,22 @@
+{
+  "name": "sd105-130-final-project",
+  "version": "1.0.0",
+  "description": "Make a planning application using Mapbox and Transit API's",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nick1G/SD105-130-Final-Project.git"
+  },
+  "author": "Nicholas Greschuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nick1G/SD105-130-Final-Project/issues"
+  },
+  "homepage": "https://github.com/Nick1G/SD105-130-Final-Project#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
