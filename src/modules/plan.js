@@ -1,0 +1,1 @@
+const transitKey = 'DUq34xxCLE290mP3lB8h';
