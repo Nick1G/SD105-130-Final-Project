@@ -1,9 +1,8 @@
-export const mapboxKey = 'pk.eyJ1Ijoibmlja28xIiwiYSI6ImNrd3o2MTU5ejBydGwybm1raXNrdzVyMTYifQ.GJ6eL_Q7ltDLLzW572Q5iA';
-export const mapboxAPI = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
-export const bboxCoords = '-97.325875,49.766204,-96.953987,49.99275';
+import { renderOrigins, renderDestinations } from './modules/inputs.js';
+import { changeOriginClass, changeDestinationClass } from './modules/classes.js';
 
-import renderOrigins from './modules/origin.js';
-import renderDestinations from './modules/destination.js';
+export const originsEl = document.querySelector('.origins');
+export const destinationsEl = document.querySelector('.destinations');
 
 const startInputEl = document.querySelector('.origin-form');
 startInputEl.addEventListener('submit', e => {
@@ -15,4 +14,12 @@ const endInputEl = document.querySelector('.destination-form');
 endInputEl.addEventListener('submit', e => {
   e.preventDefault();
   renderDestinations(e.target.firstElementChild.value);
+});
+
+document.querySelector('body').addEventListener('click', e => {
+  if (e.target.parentElement.parentElement.className === 'origins') {
+    changeOriginClass(e.target.parentElement);
+  } else if (e.target.parentElement.parentElement.className === 'destinations') {
+    changeDestinationClass(e.target.parentElement);
+  }
 });
