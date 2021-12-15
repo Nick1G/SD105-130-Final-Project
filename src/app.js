@@ -29,6 +29,7 @@ const planButton = document.querySelector('.plan-trip');
 planButton.addEventListener('click', () => {
   const selectedLocations = document.querySelectorAll('.selected');
   if (selectedLocations.length === 2) {
+    document.querySelector('.my-trip').innerHTML = '';
     const startLatAndLong = [selectedLocations[0].getAttribute('data-lat'), selectedLocations[0].getAttribute('data-long')];
     const endLatAndLong = [selectedLocations[1].getAttribute('data-lat'), selectedLocations[1].getAttribute('data-long')];
     getPlan(startLatAndLong, endLatAndLong);

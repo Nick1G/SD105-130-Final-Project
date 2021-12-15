@@ -9,6 +9,8 @@ export const renderOrigins = (input) => {
     return;
   }
 
+  // FIND A WAY TO MAKE A SINGLE FUNCTION USING NEXTSIBLING
+
   return fetch(`${mapboxAPI}${input}.json?bbox=${bboxCoords}&limit=10&access_token=${mapboxKey}`)
     .then(response => response.json())
     .then(data => {
@@ -17,10 +19,10 @@ export const renderOrigins = (input) => {
 
         data.features.forEach(location => {
           originsEl.insertAdjacentHTML('beforeend', `
-          <li data-long="${location.center[0]}" data-lat="${location.center[1]}">
-            <div class="name">${location.text}</div>
-            <div>${location.properties.address}</div>
-          </li>`);
+            <li data-long="${location.center[0]}" data-lat="${location.center[1]}">
+              <div class="name">${location.text}</div>
+              <div>${location.properties.address}</div>
+            </li>`);
         });
       }
     });
@@ -39,10 +41,10 @@ export const renderDestinations = (input) => {
 
         data.features.forEach(location => {
           destinationsEl.insertAdjacentHTML('beforeend', `
-          <li data-long="${location.center[0]}" data-lat="${location.center[1]}">
-            <div class="name">${location.text}</div>
-            <div>${location.properties.address}</div>
-          </li>`);
+            <li data-long="${location.center[0]}" data-lat="${location.center[1]}">
+              <div class="name">${location.text}</div>
+              <div>${location.properties.address}</div>
+            </li>`);
         });
       }
     });
