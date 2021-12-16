@@ -1,18 +1,16 @@
 const transitKey = 'DUq34xxCLE290mP3lB8h';
 const transitCall = 'https://api.winnipegtransit.com/v3/trip-planner.json?';
-const tripList = document.querySelector('.my-trip');
+import { tripList } from '../app.js';
 
-export default (startLatLong, endLatLong) => {
-  return fetch(`${transitCall}origin=geo/${startLatLong[0]},${startLatLong[1]}&destination=geo/${endLatLong[0]},${endLatLong[1]}&api-key=${transitKey}`)
+export default (originCoords, destCoords) => {
+  return fetch(`${transitCall}origin=geo/${originCoords[0]},${originCoords[1]}&destination=geo/${destCoords[0]},${destCoords[1]}&api-key=${transitKey}`)
     .then(response => response.json())
     .then(data => {
       if (data.plans.length === 0) {
         tripList.insertAdjacentHTML('beforeend', `
-          <p>No trips available!</p>`);
+          <h2>No trips available!</h2>`);
         return;
       }
-
-      console.log(data.plans);
 
       data.plans.forEach(plan => {
         plan.segments.forEach(segment => {
@@ -47,6 +45,15 @@ export default (startLatLong, endLatLong) => {
 }
 
 const renderRoute = (object) => {
+  if (tripList.querySelectorAll('h2').length === 0) {
+    tripList.insertAdjacentHTML('beforeend', `
+      <h2>Recommended Route</h2>`);
+
+  } else if (tripList.querySelectorAll('h2').length === 1 && tripList.querySelectorAll('hr').length === 1) {
+    tripList.insertAdjacentHTML('beforeend', `
+      <h2>Alternative Routes</h2>`);
+  }
+
   if (object.type === 'walk' && Object.keys(object).includes('nextStop')) {
     tripList.insertAdjacentHTML('beforeend', `
       <li>
@@ -68,6 +75,6 @@ const renderRoute = (object) => {
     tripList.insertAdjacentHTML('beforeend', `
       <li>
         <i class="fas fa-walking" aria-hidden="true"></i>Walk for ${object.time} minutes to your destination.
-      </li>`);
+      </li><hr>`);
   }
 }

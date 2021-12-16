@@ -4,6 +4,7 @@ import getPlan from './modules/plan.js';
 
 export const originsEl = document.querySelector('.origins');
 export const destinationsEl = document.querySelector('.destinations');
+export const tripList = document.querySelector('.my-trip');
 
 const startInputEl = document.querySelector('.origin-form');
 startInputEl.addEventListener('submit', e => {
@@ -29,9 +30,21 @@ const planButton = document.querySelector('.plan-trip');
 planButton.addEventListener('click', () => {
   const selectedLocations = document.querySelectorAll('.selected');
   if (selectedLocations.length === 2) {
-    document.querySelector('.my-trip').innerHTML = '';
-    const startLatAndLong = [selectedLocations[0].getAttribute('data-lat'), selectedLocations[0].getAttribute('data-long')];
-    const endLatAndLong = [selectedLocations[1].getAttribute('data-lat'), selectedLocations[1].getAttribute('data-long')];
-    getPlan(startLatAndLong, endLatAndLong);
+    tripList.innerHTML = '';
+    const startLatLong = [selectedLocations[0].getAttribute('data-lat'), selectedLocations[0].getAttribute('data-long')];
+    const endLatLong = [selectedLocations[1].getAttribute('data-lat'), selectedLocations[1].getAttribute('data-long')];
+    if (startLatLong[0] === endLatLong[0] && startLatLong[1] === endLatLong[1]) {
+      tripList.innerHTML = '';
+      tripList.insertAdjacentHTML('beforeend', `
+        <h2>You're already there!</h2>`);
+      return;
+    }
+    
+    getPlan(startLatLong, endLatLong);
+
+  } else {
+    tripList.innerHTML = '';
+    tripList.insertAdjacentHTML('beforeend', `
+      <h2>Please Select An Origin AND Destination</h2>`);
   }
 });
