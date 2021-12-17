@@ -21,6 +21,7 @@ endInputEl.addEventListener('submit', e => {
 document.querySelector('body').addEventListener('click', e => {
   if (e.target.parentElement.parentElement.className === 'origins') {
     changeOriginClass(e.target.parentElement);
+
   } else if (e.target.parentElement.parentElement.className === 'destinations') {
     changeDestinationClass(e.target.parentElement);
   }
@@ -29,19 +30,21 @@ document.querySelector('body').addEventListener('click', e => {
 const planButton = document.querySelector('.plan-trip');
 planButton.addEventListener('click', () => {
   const selectedLocations = document.querySelectorAll('.selected');
+
   if (selectedLocations.length === 2) {
     tripList.innerHTML = '';
     const startLatLong = [selectedLocations[0].getAttribute('data-lat'), selectedLocations[0].getAttribute('data-long')];
     const endLatLong = [selectedLocations[1].getAttribute('data-lat'), selectedLocations[1].getAttribute('data-long')];
+
     if (startLatLong[0] === endLatLong[0] && startLatLong[1] === endLatLong[1]) {
       tripList.innerHTML = '';
       tripList.insertAdjacentHTML('beforeend', `
         <h2>You're already there!</h2>`);
       return;
     }
-    
-    getPlan(startLatLong, endLatLong);
 
+    getPlan(startLatLong, endLatLong);
+    
   } else {
     tripList.innerHTML = '';
     tripList.insertAdjacentHTML('beforeend', `

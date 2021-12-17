@@ -4,7 +4,8 @@
   "description": "Make a planning application using Mapbox and Transit API's",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/Nick1G/SD105-130-Final-Project#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "webpack": "^5.65.0",
+    "webpack-stream": "^7.0.0"
   }
 }
