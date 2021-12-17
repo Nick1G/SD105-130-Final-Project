@@ -6,6 +6,10 @@ export const originsEl = document.querySelector('.origins');
 export const destinationsEl = document.querySelector('.destinations');
 export const tripList = document.querySelector('.my-trip');
 
+originsEl.innerHTML = '';
+destinationsEl.innerHTML = '';
+tripList.innerHTML = '';
+
 const startInputEl = document.querySelector('.origin-form');
 startInputEl.addEventListener('submit', e => {
   e.preventDefault();
